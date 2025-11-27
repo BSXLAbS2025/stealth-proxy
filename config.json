@@ -1,0 +1,17 @@
+{
+  "proxies": [
+    "https://raw.githubusercontent.com/yourusername/stealth-data/main/proxy1",
+    "https://raw.githubusercontent.com/yourusername/stealth-data/main/proxy2",
+    "https://gitlab.com/yourusername/stealth-proxy/-/raw/main/proxy3"
+  ],
+  "backup_proxies": [
+    "https://raw.githubusercontent.com/anotheruser/mirror/main/data",
+    "https://bitbucket.org/yourusername/stealth/raw/main/proxy"
+  ],
+  "encryption": {
+    "method": "aes-256-gcm",
+    "key_rotation_hours": 24
+  },
+  "version": "1.2",
+  "last_updated": "2025-11-27T12:20:40Z"
+}
