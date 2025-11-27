@@ -1,15 +1,12 @@
 {
   "proxies": [
-    "https://github.com/BSXLAbS2025/stealth-proxy.github.io/",
+    "https://bsxlab-s2025.github.io/stealth-proxy/proxy",
+    "https://raw.githubusercontent.com/BSXLAbS2025/stealth-proxy/main/proxy.html",
+    "https://bsxlab-s2025.github.io/stealth-proxy/proxy.html"
   ],
   "backup_proxies": [
-    "https://raw.githubusercontent.com/anotheruser/mirror/main/data",
-    "https://bitbucket.org/yourusername/stealth/raw/main/proxy"
+    "https://cdn.jsdelivr.net/gh/BSXLAbS2025/stealth-proxy@main/proxy.html",
+    "https://raw.githack.com/BSXLAbS2025/stealth-proxy/main/proxy.html"
   ],
-  "encryption": {
-    "method": "aes-256-gcm",
-    "key_rotation_hours": 24
-  },
-  "version": "1.2",
-  "last_updated": "2025-11-27T12:20:40Z"
+  "version": "2.0"
 }
