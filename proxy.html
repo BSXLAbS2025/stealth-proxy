@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Proxy</title>
+    <script>
+        async function fetchProxiedData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedUrl = urlParams.get('url');
+            
+            if (!encodedUrl) {
+                return { error: 'No URL provided' };
+            }
+
+            try {
+                const targetUrl = atob(encodedUrl);
+                
+                // Добавляем рандомные заголовки чтобы выглядеть как браузер
+                const response = await fetch(targetUrl, {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                        'Accept': 'application/json,text/html,*/*',
+                        'Accept-Language': 'ru-RU,ru;q=0.9,en;q=0.8',
+                        'Referer': 'https://github.com/',
+                        'Sec-Fetch-Dest': 'document',
+                        'Sec-Fetch-Mode': 'navigate',
+                        'Sec-Fetch-Site': 'none'
+                    }
+                });
+
+                const contentType = response.headers.get('content-type');
+                
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    return data;
+                } else {
+                    const text = await response.text();
+                    return { html: text };
+                }
+            } catch (error) {
+                return { error: error.message };
+            }
+        }
+
+        // Автоматически выполняем при загрузке
+        window.addEventListener('DOMContentLoaded', async () => {
+            const result = await fetchProxiedData();
+            
+            // Отправляем результат обратно (для iframe или fetch)
+            window.parent.postMessage({
+                type: 'PROXY_RESULT',
+                data: result
+            }, '*');
+            
+            // Также можно показать результат на странице
+            document.body.innerHTML = '<pre>' + JSON.stringify(result, null, 2) + '</pre>';
+        });
+    </script>
+</head>
+<body>
+    Loading...
+</body>
+</html>
